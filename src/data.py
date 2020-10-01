@@ -15,14 +15,6 @@ data = {
             # "handle_str" : "newuser",
         }
     ],
-    "messages" : [
-        {
-            # "message_id" :,
-            # "u_id" :,
-            # "message" :,
-            # "time_created:"
-        }
-    ],
     "channels" : [
         {
             # "channel_id": 1,
@@ -30,6 +22,7 @@ data = {
             # "public" : True
             # "owner_members" : [{u_id : , name_first : , name_last : },...]
             # "all_members" : [{u_id : , name_first : , name_last : },...]
+            # "messages" : [{"message_id", "u_id", "message", "time_created"}]
         }
     ],
     "members" : [
