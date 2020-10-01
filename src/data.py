@@ -27,6 +27,9 @@ data = {
         {
             # "channel_id": 1,
             # "name" : 'channel1',
+            # "public" : True
+            # "owner_members" : [token1, token2...]
+            # "all_members" : [token1, token2...]
         }
     ],
     "members" : [
