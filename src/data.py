@@ -28,8 +28,8 @@ data = {
             # "channel_id": 1,
             # "name" : 'channel1',
             # "public" : True
-            # "owner_members" : [token1, token2...]
-            # "all_members" : [token1, token2...]
+            # "owner_members" : [{u_id : , name_first : , name_last : },...]
+            # "all_members" : [{u_id : , name_first : , name_last : },...]
         }
     ],
     "members" : [
