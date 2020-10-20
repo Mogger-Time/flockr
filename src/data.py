@@ -19,6 +19,7 @@ data = {
             # "owner_members" : [{u_id : , name_first : , name_last : },...]
             # "all_members" : [{u_id : , name_first : , name_last : },...]
             # "messages" : [{"message_id", "u_id", "message", "time_created"}]
+            # "num_messages":,
         }
     ],
     "members" : [
