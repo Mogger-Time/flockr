@@ -34,6 +34,8 @@ data = {
             # "message":,
             # "time_created":,
             # "channel_id":,
+            # "reacts"
+            # "is_pinned"
         }    
     ],
     "num_messages":
