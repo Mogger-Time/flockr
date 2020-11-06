@@ -18,7 +18,7 @@ data = {
             # "is_public" : True
             # "owner_members" : [{u_id : , name_first : , name_last : },...]
             # "all_members" : [{u_id : , name_first : , name_last : },...]
-            # "stand_up" : {is_active: True, time_finish: , message_queue: []}
+            # "stand_up" : {is_active: False, time_finish: None, message_queue: []}
         }
     ],
     "members" : [
