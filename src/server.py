@@ -1,6 +1,6 @@
 import sys
 from json import dumps
-from flask import Flask, request
+from flask import Flask, request, send_from_directory
 from flask_cors import CORS
 from error import InputError
 
@@ -25,7 +25,7 @@ def defaultHandler(err):
     response.content_type = 'application/json'
     return response
 
-APP = Flask(__name__)
+APP = Flask(__name__, static_url_path="/static/")
 CORS(APP)
 
 APP.config['TRAP_HTTP_EXCEPTIONS'] = True
@@ -184,6 +184,10 @@ def http_user_profile_sethandle():
     response = user.user_profile_sethandle(data["token"], data["handle_str"])
     return dumps(response)
 
+@APP.route("/static/<path:path>")
+def http_user_profile_serve_photo(path):
+    return send_from_directory("", path)
+
 @APP.route("/user/profile/uploadphoto", methods = ["POST"])
 def http_user_profile_uploadphoto():
     data = request.get_json()
@@ -194,6 +198,7 @@ def http_user_profile_uploadphoto():
     x_end = data["x_end"]
     y_end = data["y_end"]
     response = user.user_profile_uploadphoto(token, img_url, x_start, y_start, x_end, y_end)
+    http_user_profile_serve_photo(path)
     return dumps(response)
 
 if __name__ == "__main__":

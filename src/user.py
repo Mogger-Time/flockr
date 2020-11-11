@@ -154,3 +154,61 @@ def user_profile_sethandle(token, handle_str):
             user["handle_str"] = handle_str
 
     return {}
+
+def user_profile_uploadphoto(token, img_url, x_start, y_start, x_end, y_end): 
+    """Uploads a photo to the user's profile.
+
+    Args:
+        token: A string which acts an authorisation hash.
+        img_url: The url of the image the user wishes to upload.
+        x_start: Starting x position.
+        y_start: Starting y position.
+        x_end: Ending x position.
+        y_end: Ending y position.
+
+    Raises:
+        InputError: When the img_url is invalid.
+                    When any of the x and y coordinates are not within the image's dimensions.
+                    When the image uploaded is not a jpg.
+        AccessError: When the user's token is invalid.
+    """
+
+    global data 
+
+    # Check if token called is valid
+    if not valid_token(token):
+        raise AccessError("Invalid permissions")
+
+    is_valid = validators.url(img_url)
+    if not is_valid:
+        raise InputError("Invalid url")
+
+    # Saves the image at the img_url locally with the following filename
+    urllib.request.urlretrieve(img_url, "src/static/profile_picture.jpg")
+
+    if ".jpg" not in img_url and ".jpeg" not in img_url:
+        raise InputError("Image is not in jpg/jpeg format")
+
+    original_image = Image.open("src/static/profile_picture.jpg")
+    width, height = original_image.size
+
+    if x_start < 0 or x_start >= width:
+        raise InputError("x1 out of bounds")
+        
+    if  x_end <= 0 or x_end > width:
+        raise InputError("x2 out of bounds")
+    
+    if y_start < 0 or y_start >= height:
+        raise InputError("y1 out of bounds")
+        
+    if y_end <= 0 or y_end > height:
+        raise InputError("y2 out of bounds")
+        
+    # Puts the passed in x and y positions into a tuple
+    crop_dimensions = (x_start, y_start, x_end, y_end)
+
+    # Crops the image according to the crop_dimensions and saves this into the original file
+    cropped_image = original_image.crop(crop_dimensions)
+    cropped_image.save("src/static/profile_picture.jpg")
+
+    return {}
